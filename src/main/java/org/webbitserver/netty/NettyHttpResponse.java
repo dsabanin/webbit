@@ -128,9 +128,8 @@ public class NettyHttpResponse implements org.webbitserver.HttpResponse {
     @Override
     public NettyHttpResponse error(Throwable error) {
         response.setStatus(HttpResponseStatus.INTERNAL_SERVER_ERROR);
-        String message = getStackTrace(error);
         header("Content-Type", "text/plain");
-        content(message);
+        content("Internal Error\n");
         flushResponse();
 
         exceptionHandler.uncaughtException(Thread.currentThread(),
